@@ -1,0 +1,452 @@
+.data-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeUp 0.35s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.data-container h2 {
+  font-family: var(--font-disp);
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text);
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.data-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.5rem;
+  height: 3px;
+  background: var(--accent);
+}
+
+.upload-box {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.upload-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent2);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.upload-box input[type='file'] {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed var(--border);
+  padding: 0.65rem 1rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.upload-box input[type='file']:hover,
+.upload-box input[type='file']:focus {
+  outline: none;
+  border-color: var(--accent2);
+  color: var(--text);
+}
+
+.upload-box input[type='file']::file-selector-button {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--border);
+  color: var(--text);
+  border: none;
+  border-right: 1px solid var(--bg);
+  padding: 0.5rem 0.9rem;
+  margin-right: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.upload-box input[type='file']::file-selector-button:hover {
+  background: var(--accent2);
+  color: var(--bg);
+}
+
+.upload-box button {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background 0.15s,
+    transform 0.1s,
+    opacity 0.2s;
+}
+
+.upload-box button:hover:not(:disabled) {
+  background: #d8ff4f;
+  transform: translateY(-1px);
+}
+
+.upload-box button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.upload-box button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--muted);
+}
+
+.dataset-info {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeUp 0.3s ease both;
+  position: relative;
+}
+
+.dataset-info::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.dataset-info h3 {
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.dataset-info h4 {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.1rem;
+}
+
+.dataset-info p {
+  font-size: 0.9rem;
+  color: var(--accent2);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dataset-info p strong {
+  color: var(--text);
+  font-weight: 500;
+  min-width: 6rem;
+  flex-shrink: 0;
+}
+
+.dataset-info ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.dataset-info ul li {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: rgba(200, 241, 53, 0.08);
+  color: var(--accent);
+  border: 1px solid rgba(200, 241, 53, 0.2);
+  padding: 0.3rem 0.7rem;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
+}
+
+.dataset-info ul li:hover {
+  background: rgba(200, 241, 53, 0.15);
+  border-color: var(--accent);
+}
+
+.cta-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+  background: var(--accent2);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--accent2);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.cta-btn:hover {
+  background: #4dffd9;
+  transform: translateY(-1px);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}
+
+@media (min-width: 1400px) {
+  .data-container h2 {
+    font-size: 2rem;
+  }
+
+  .upload-box {
+    padding: 2rem;
+  }
+
+  .upload-box input[type='file'] {
+    font-size: 1.1rem;
+  }
+
+  .upload-box input[type='file']::file-selector-button {
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+  }
+
+  .upload-box button {
+    font-size: 0.9rem;
+    padding: 0.85rem 1.75rem;
+  }
+
+  .dataset-info {
+    padding: 2.25rem;
+  }
+
+  .dataset-info h3 {
+    font-size: 1.3rem;
+  }
+
+  .dataset-info p {
+    font-size: 1rem;
+  }
+
+  .dataset-info ul li {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1279px) {
+  .data-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .upload-box input[type='file'] {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .data-container {
+    gap: 1.75rem;
+  }
+
+  .upload-box {
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    padding: 1.25rem;
+  }
+
+  .upload-box input[type='file'] {
+    flex: 1 1 100%;
+  }
+
+  .upload-box button {
+    flex: 1 1 100%;
+    text-align: center;
+    padding: 0.8rem 1rem;
+  }
+
+  .dataset-info {
+    padding: 1.5rem;
+  }
+
+  .dataset-info p strong {
+    min-width: 5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .data-container {
+    gap: 1.5rem;
+  }
+
+  .data-container h2 {
+    font-size: 1.2rem;
+  }
+
+  .upload-box {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.1rem;
+  }
+
+  .upload-box input[type='file'] {
+    font-size: 0.88rem;
+    padding: 0.6rem 0.75rem;
+    width: 100%;
+  }
+
+  .upload-box input[type='file']::file-selector-button {
+    font-size: 0.8rem;
+    padding: 0.45rem 0.75rem;
+    margin-right: 0.6rem;
+  }
+
+  .upload-box button {
+    width: 100%;
+    text-align: center;
+    font-size: 0.82rem;
+    padding: 0.8rem 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  .dataset-info {
+    padding: 1.25rem;
+    gap: 0.85rem;
+  }
+
+  .dataset-info h3 {
+    font-size: 1rem;
+  }
+
+  .dataset-info p {
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .dataset-info p strong {
+    min-width: 100%;
+  }
+
+  .dataset-info ul li {
+    font-size: 0.68rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .data-container h2 {
+    font-size: 1rem;
+  }
+
+  .upload-box {
+    padding: 0.9rem;
+    gap: 0.7rem;
+  }
+
+  .upload-box input[type='file'] {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .upload-box input[type='file']::file-selector-button {
+    font-size: 0.72rem;
+    padding: 0.4rem 0.6rem;
+    letter-spacing: 0.07em;
+    margin-right: 0.5rem;
+  }
+
+  .upload-box button {
+    font-size: 0.75rem;
+    padding: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+
+  .dataset-info {
+    padding: 1rem;
+    gap: 0.7rem;
+  }
+
+  .dataset-info h3 {
+    font-size: 0.95rem;
+  }
+
+  .dataset-info ul {
+    gap: 0.35rem;
+  }
+
+  .dataset-info ul li {
+    font-size: 0.64rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .data-container,
+  .dataset-info {
+    animation: none;
+  }
+
+  .upload-box button,
+  .upload-box input[type='file'],
+  .upload-box input[type='file']::file-selector-button,
+  .dataset-info ul li {
+    transition: none;
+  }
+}

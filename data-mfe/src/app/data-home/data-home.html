@@ -1,0 +1,31 @@
+<section class="data-container">
+  <h2>Data Upload</h2>
+
+  <div class="upload-box">
+    <input type="file" (change)="onFileSelected($event)" accept=".csv" />
+
+    <button (click)="upload()" [disabled]="!selectedFile">Upload Dataset</button>
+  </div>
+
+  @if (response) {
+    <div class="dataset-info">
+      <h3>Dataset Info</h3>
+
+      <p><strong>Rows:</strong> {{ response.rows }}</p>
+      <p><strong>Columns:</strong> {{ response.columns }}</p>
+
+      <h4>Column Names</h4>
+
+      <ul>
+        @for (col of response.column_names; track col) {
+          <li>{{ col }}</li>
+        }
+      </ul>
+
+      <button class="cta-btn" (click)="goToTraining()" >
+        Continue to Training →
+      </button>
+    </div>
+  }
+
+</section>

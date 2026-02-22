@@ -1,0 +1,52 @@
+<div 
+  class="sidebar-overlay"
+  [class.visible]="isOpen"
+  (click)="closeSidebar()">
+</div>
+
+<div class="layout">
+
+  <header class="navbar">
+    <button class="menu-toggle"
+            (click)="toggleSidebar()"
+            [class.open]="isOpen"
+            aria-label="Toggle sidebar">
+      <span></span><span></span><span></span>
+    </button>
+
+    AI Learning Dashboard
+  </header>
+
+  <div class="main">
+
+    <aside class="sidebar"
+           [class.open]="isOpen">
+
+      <a routerLink="/data"
+         routerLinkActive="active"
+         (click)="closeSidebar()"
+         data-icon="◫">Data</a>
+
+      <a routerLink="/training"
+         routerLinkActive="active"
+         (click)="closeSidebar()"
+         data-icon="⌬">Training</a>
+
+      <a routerLink="/visualization"
+         routerLinkActive="active"
+         (click)="closeSidebar()"
+         data-icon="◎">Visualization</a>
+
+      <a routerLink="/prediction"
+         routerLinkActive="active"
+         (click)="closeSidebar()"
+         data-icon="◆">Prediction</a>
+
+    </aside>
+
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+
+  </div>
+</div>

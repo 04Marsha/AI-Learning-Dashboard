@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root {
+  --bg: #0b0c10;
+  --surface: #111318;
+  --border: #1e2029;
+  --accent: #c8f135;
+  --accent2: #35f1c8;
+  --text: #e8eaf0;
+  --muted: #555a6e;
+  --nav-w: 220px;
+  --nav-h: 56px;
+  --font-ui: 'DM Mono', monospace;
+  --font-disp: 'Space Grotesk', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+}
