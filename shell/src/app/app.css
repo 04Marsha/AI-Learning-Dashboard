@@ -86,6 +86,7 @@
     border-left-color 0.15s;
   position: relative;
   border-left: 3px solid transparent;
+  cursor: pointer;
 }
 
 .sidebar a::before {
@@ -99,6 +100,7 @@
   color: var(--text);
   background: rgba(200, 241, 53, 0.05);
   border-left-color: var(--accent);
+  cursor: pointer;
 }
 
 .sidebar a:hover::before {
@@ -109,6 +111,21 @@
   color: var(--accent);
   background: rgba(200, 241, 53, 0.08);
   border-left-color: var(--accent);
+}
+
+.sidebar a.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.sidebar a.disabled:hover {
+  color: var(--muted);
+  background: transparent;
+  border-left-color: transparent;
+}
+
+.sidebar a.disabled:hover::before {
+  opacity: 0.5;
 }
 
 .content {
@@ -230,17 +247,18 @@
 }
 
 .sidebar-overlay {
-  display: none;
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 19;
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.3s;
 }
 
 .sidebar-overlay.visible {
   opacity: 1;
+  pointer-events: auto;
 }
 
 @keyframes fadeUp {

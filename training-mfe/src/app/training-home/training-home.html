@@ -1,0 +1,57 @@
+<section class="training-container">
+  @if (loading) {
+    <p>Loading dataset info...</p>
+  }
+
+  @if (!loading && !datasetInfo?.exists) {
+    <div class="warning">No dataset uploaded. Please upload dataset first.</div>
+  }
+
+  @if (!loading && datasetInfo?.exists) {
+    <div class="dataset-summary">
+      <h3>Dataset Summary</h3>
+      <p><strong>Rows:</strong> {{ datasetInfo.rows }}</p>
+      <p><strong>Columns:</strong> {{ datasetInfo.columns }}</p>
+      <p><strong>Problem Type:</strong> {{ datasetInfo.problem_type }}</p>
+    </div>
+
+    <div class="algorithm-section">
+      <h3>Select Algorithm</h3>
+
+      <div class="algo-grid">
+        @for (algo of datasetInfo.allowed_algorithms; track algo) {
+          <div
+            class="algo-card"
+            [class.selected]="selectedAlgorithm === algo"
+            (click)="selectAlgorithm(algo)"
+          >
+            {{ algo.replace('_', ' ') }}
+          </div>
+        }
+      </div>
+
+      <button class="train-btn" [disabled]="!selectedAlgorithm" (click)="train()">
+        Train Model
+      </button>
+
+      @if (metrics) {
+        <div class="result-card">
+          <h3>Model Performance</h3>
+
+          <p><strong>Algorithm:</strong> {{ metrics.algorithm }}</p>
+          <p><strong>Score:</strong> {{ metrics.score }}</p>
+
+          <div class="performance-bar">
+            <div
+              class="bar-fill"
+              [class]="getPerformanceColor(metrics.score)"
+              [style.width.%]="metrics.score * 100"
+            ></div>
+          </div>
+
+          <p class="score-label">{{ metrics.score * 100 | number: '1.0-0' }}%</p>
+        </div>
+      }
+    </div>
+  }
+</section>

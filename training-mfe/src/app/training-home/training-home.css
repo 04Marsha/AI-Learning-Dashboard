@@ -1,0 +1,584 @@
+.training-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeUp 0.35s ease both;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.training-container > p {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.training-container > p::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent2);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.6);
+  }
+}
+
+.warning {
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f5c542;
+  background: rgba(245, 197, 66, 0.07);
+  border: 1px solid rgba(245, 197, 66, 0.25);
+  border-left: 3px solid #f5c542;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.warning::before {
+  content: '⚠';
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.dataset-summary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  animation: fadeUp 0.3s ease both;
+}
+
+.dataset-summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.dataset-summary h3 {
+  font-family: var(--font-disp);
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.dataset-summary p {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dataset-summary p strong {
+  color: var(--text);
+  font-weight: 500;
+  min-width: 8rem;
+  flex-shrink: 0;
+}
+
+.dataset-summary p span,
+.dataset-summary p > *:last-child {
+  color: var(--accent2);
+}
+
+.algorithm-section {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  animation: fadeUp 0.4s ease both;
+}
+
+.algorithm-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent);
+  pointer-events: none;
+}
+
+.algorithm-section h3 {
+  font-family: var(--font-disp);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.algo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 0.75rem;
+}
+
+.algo-card {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition:
+    color 0.15s,
+    border-color 0.15s,
+    background 0.15s,
+    transform 0.1s;
+  user-select: none;
+}
+
+.algo-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(200, 241, 53, 0.06) 100%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.algo-card:hover {
+  color: var(--text);
+  border-color: var(--muted);
+  transform: translateY(-1px);
+}
+
+.algo-card:hover::after {
+  opacity: 1;
+}
+
+.algo-card.selected {
+  color: var(--accent);
+  background: rgba(200, 241, 53, 0.06);
+  border-color: var(--accent);
+  border-width: 2px;
+  transform: translateY(-1px);
+}
+
+.algo-card.selected::after {
+  opacity: 0;
+}
+
+.train-btn {
+  align-self: flex-start;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition:
+    background 0.15s,
+    transform 0.1s,
+    opacity 0.2s;
+}
+
+.train-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(-100%);
+  transition: transform 0.25s ease;
+}
+
+.train-btn:hover:not(:disabled)::before {
+  transform: translateX(0);
+}
+
+.train-btn:hover:not(:disabled) {
+  background: #d8ff4f;
+  transform: translateY(-2px);
+}
+
+.train-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.train-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  background: var(--muted);
+}
+
+.result-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  position: relative;
+  animation: fadeUp 0.35s ease both;
+}
+
+.result-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--accent2);
+  pointer-events: none;
+}
+
+.result-card h3 {
+  font-family: var(--font-disp);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.result-card p {
+  font-family: var(--font-ui);
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.result-card p strong {
+  color: var(--text);
+  font-weight: 500;
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.performance-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 0;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  filter: blur(4px);
+}
+
+.bar-fill.high {
+  background: var(--accent);
+}
+
+.bar-fill.average {
+  background: #f5c542;
+}
+
+.bar-fill.low {
+  background: #f07070;
+}
+
+.score-label {
+  font-family: var(--font-disp) !important;
+  font-size: 1.8rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--text) !important;
+  line-height: 1 !important;
+  align-self: flex-start;
+  min-width: unset !important;
+}
+
+@media (min-width: 1400px) {
+  .training-container {
+    gap: 2.5rem;
+  }
+
+  .dataset-summary,
+  .algorithm-section {
+    padding: 2.25rem;
+  }
+
+  .dataset-summary h3,
+  .algorithm-section h3 {
+    font-size: 1.5rem;
+  }
+
+  .dataset-summary p {
+    font-size: 1rem;
+  }
+
+  .algo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+  }
+
+  .algo-card {
+    font-size: 0.8rem;
+    padding: 1.1rem 1rem;
+  }
+
+  .train-btn {
+    font-size: 0.85rem;
+    padding: 0.95rem 2.5rem;
+  }
+
+  .result-card {
+    padding: 2rem;
+  }
+
+  .result-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .result-card p {
+    font-size: 0.95rem;
+  }
+
+  .performance-bar {
+    height: 8px;
+  }
+
+  .score-label {
+    font-size: 2.2rem !important;
+  }
+}
+
+@media (max-width: 1279px) {
+  .algo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .dataset-summary p strong {
+    min-width: 7rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .training-container {
+    gap: 1.75rem;
+  }
+
+  .dataset-summary,
+  .algorithm-section {
+    padding: 1.5rem;
+  }
+
+  .algo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 0.65rem;
+  }
+
+  .train-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .result-card {
+    padding: 1.35rem;
+  }
+
+  .result-card p strong {
+    min-width: 6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .training-container {
+    gap: 1.25rem;
+  }
+
+  .dataset-summary,
+  .algorithm-section {
+    padding: 1.25rem;
+  }
+
+  .dataset-summary h3,
+  .algorithm-section h3 {
+    font-size: 0.9rem;
+  }
+
+  .dataset-summary p {
+    font-size: 0.82rem;
+    flex-wrap: wrap;
+  }
+
+  .dataset-summary p strong {
+    min-width: 100%;
+  }
+
+  .algo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.6rem;
+  }
+
+  .algo-card {
+    font-size: 0.68rem;
+    padding: 0.85rem 0.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .train-btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem;
+    font-size: 0.75rem;
+  }
+
+  .warning {
+    font-size: 0.72rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .result-card {
+    padding: 1.1rem;
+    gap: 0.7rem;
+  }
+
+  .result-card h3 {
+    font-size: 0.9rem;
+  }
+
+  .result-card p {
+    font-size: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  .result-card p strong {
+    min-width: 100%;
+  }
+
+  .score-label {
+    font-size: 1.5rem !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .dataset-summary,
+  .algorithm-section {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .algorithm-section {
+    gap: 1rem;
+  }
+
+  .dataset-summary p strong {
+    font-size: 0.78rem;
+  }
+
+  .dataset-summary p {
+    font-size: 0.78rem;
+  }
+
+  .algo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .algo-card {
+    font-size: 0.62rem;
+    padding: 0.75rem 0.5rem;
+    letter-spacing: 0.04em;
+  }
+
+  .train-btn {
+    font-size: 0.7rem;
+    padding: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .warning {
+    font-size: 0.68rem;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 0.9rem;
+  }
+
+  .result-card {
+    padding: 0.9rem;
+    gap: 0.6rem;
+  }
+
+  .result-card p {
+    font-size: 0.75rem;
+  }
+
+  .performance-bar {
+    height: 5px;
+  }
+
+  .score-label {
+    font-size: 1.3rem !important;
+  }
+}

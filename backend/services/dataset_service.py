@@ -1,4 +1,5 @@
 import pandas as pd
+from services.utils import detect_problem_type
 
 current_dataset = None
 
@@ -16,6 +17,13 @@ def save_dataset(file):
         "preview": df.head(5).to_dict(orient="records")
     }
 
+def get_allowed_algorithm(problem_type: str):
+    if problem_type == "regression":
+        return ["linear_regression"]
+    elif problem_type == "classification":
+        return ["logistic_regression", "decision_tree"]
+    return []
+
 def get_dataset():
     return current_dataset
 
@@ -25,9 +33,16 @@ def get_dataset_info():
     if current_dataset is None:
         return {"exists": False}
     
+    y = current_dataset.iloc[:, -1]
+    problem_type = detect_problem_type(y)
+    allowed_algorithms = get_allowed_algorithm(problem_type)
+
     return {
         "exists": True,
         "rows": current_dataset.shape[0],
         "columns": current_dataset.shape[1],
-        "columns_names": list(current_dataset.columns)
+        "column_names": list(current_dataset.columns),
+        "problem_type": problem_type,
+        "allowed_algorithms": allowed_algorithms
     }
+

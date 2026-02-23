@@ -14,7 +14,10 @@ export class DataHomeComponent {
   selectedFile: File | null = null;
   response: any = null;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -28,7 +31,9 @@ export class DataHomeComponent {
 
     this.http.post('http://localhost:8000/upload-dataset', formData).subscribe({
       next: (res) => {
-        this.response = res;
+        this.http.get('http://localhost:8000/dataset-info').subscribe((info) => {
+          this.response = info;
+        });
       },
       error: (err) => {
         console.error(err);

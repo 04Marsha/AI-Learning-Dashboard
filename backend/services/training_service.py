@@ -5,18 +5,10 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import r2_score
 from services.dataset_service import get_dataset
+from services.utils import detect_problem_type
 
 trained_model = None
 last_metrics = None
-
-def detect_problem_type(y):
-    if y.dtype.kind in ['i', 'f']:
-        if y.nunique() > 10:
-            return "regression"
-        else:
-            return "classification"
-    else:
-        return "classification"
 
 def train_model(algorithm: str):
     global trained_model, last_metrics
