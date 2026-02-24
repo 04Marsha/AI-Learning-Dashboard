@@ -1,0 +1,39 @@
+<section class="prediction-container">
+  @if (loading) {
+    <p>Checking model status...</p>
+  }
+
+  @if (!loading && !datasetExists) {
+    <div class="warning">No dataset uploaded. Please upload dataset first.</div>
+  }
+
+  @if (!loading && datasetExists) {
+    <div class="prediction-context">
+      <h3>Model Inference</h3>
+
+      @if (!modelTrained) {
+        <p class="info-text">Train a model before making predictions.</p>
+      }
+    </div>
+
+    <div class="form-section">
+      @for (feature of features; track feature) {
+        <div class="input-group">
+          <label>{{ feature }}</label>
+          <input type="number" [(ngModel)]="inputs[feature]" [disabled]="!modelTrained" />
+        </div>
+      }
+
+      <button class="predict-btn" (click)="predict()" [disabled]="!modelTrained">Predict</button>
+
+      @if (prediction !== null) {
+        <div class="result-card">
+          <h3>Prediction Result</h3>
+          <p class="prediction-value">
+            {{ prediction }}
+          </p>
+        </div>
+      }
+    </div>
+  }
+</section>

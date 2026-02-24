@@ -2,11 +2,10 @@ const { shareAll, withModuleFederationPlugin } = require('@angular-architects/mo
 
 module.exports = withModuleFederationPlugin({
 
-  remotes: {
-    "data-mfe": "http://localhost:4201/remoteEntry.js",
-    "training-mfe": "http://localhost:4202/remoteEntry.js",
-    "visualization-mfe": "http://localhost:4203/remoteEntry.js",
-    "prediction-mfe": "http://localhost:4204/remoteEntry.js",
+  name: 'prediction-mfe',
+
+  exposes: {
+    './Routes': './src/app/app.routes.ts',
   },
 
   shared: {

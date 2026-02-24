@@ -109,13 +109,12 @@
 
 .sidebar a.active {
   color: var(--accent);
-  background: rgba(200, 241, 53, 0.08);
-  border-left-color: var(--accent);
 }
 
 .sidebar a.disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  color: var(--muted);
 }
 
 .sidebar a.disabled:hover {

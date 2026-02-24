@@ -1,0 +1,61 @@
+<section class="viz-container">
+  @if (loading) {
+    <p>Loading dataset...</p>
+  }
+
+  @if (!loading && !datasetInfo?.exists) {
+    <div class="warning">No dataset uploaded. Please upload dataset first.</div>
+  }
+
+  @if (!loading && datasetInfo?.exists) {
+    <div class="dataset-summary">
+      <h3>Dataset Overview</h3>
+      <p><strong>Rows:</strong> {{ datasetInfo!.rows }}</p>
+      <p><strong>Columns:</strong> {{ datasetInfo!.columns }}</p>
+      <p><strong>Problem Type:</strong> {{ datasetInfo!.problem_type }}</p>
+    </div>
+
+    <div class="preview-section">
+      <h3>Preview (First 5 Rows)</h3>
+
+      <table>
+        <thead>
+          <tr>
+            @for (key of previewData[0] | keyvalue; track key.key) {
+              <th>{{ key.key }}</th>
+            }
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (row of previewData; track row) {
+            <tr>
+              @for (cell of row | keyvalue; track cell.key) {
+                <td>{{ cell.value }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="summary-section">
+      <h3>Numeric Feature Summary</h3>
+
+      <div class="card-grid-wrapper">
+        <div class="card-grid">
+          @if (previewData.length > 0) {
+            <thead>
+              <tr>
+                @for (key of previewData[0] | keyvalue; track key.key) {
+                  <th>{{ key.key }}</th>
+                }
+              </tr>
+            </thead>
+          }
+        </div>
+      </div>
+    </div>
+    <button class="cta-btn" (click)="goToTraining()">Go to Training →</button>
+  }
+</section>

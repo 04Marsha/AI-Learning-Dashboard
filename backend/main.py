@@ -1,8 +1,8 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from services.dataset_service import save_dataset, get_dataset_info
-from services.training_service import train_model
+from services.dataset_service import save_dataset, get_dataset_info, get_dataset_preview
+from services.training_service import train_model, get_model_status, predict
 
 app = FastAPI()
 app.add_middleware(
@@ -32,3 +32,16 @@ class TrainRequest(BaseModel):
 @app.post("/train")
 def train(request: TrainRequest):
     return train_model(request.algorithm)
+
+
+@app.get("/dataset-preview")
+def dataset_preview():
+    return get_dataset_preview()
+
+@app.get("/model-status")
+def model_status():
+    return get_model_status()
+
+@app.post("/predict")
+def make_prediction(payload: dict = Body(...)):
+    return predict(payload["inputs"])

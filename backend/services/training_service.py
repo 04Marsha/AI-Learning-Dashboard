@@ -66,3 +66,39 @@ def train_model(algorithm: str):
 def get_metrics():
     global last_metrics
     return last_metrics
+
+def get_model_status():
+    global trained_model, last_metrics
+
+    if trained_model is None:
+        return {"trained": False}
+    
+    dataset = get_dataset()
+
+    X = dataset.iloc[:, :-1]
+    X = X.select_dtypes(include=["number"])
+
+    return {
+        "trained": True,
+        "problem_type": last_metrics["problem_type"],
+        "features": list(X.columns)
+    }
+
+
+def predict(inputs: dict):
+    global train_model
+
+    if train_model is None:
+        return {"error": "Model not trained"}
+    
+    dataset = get_dataset()
+    X = dataset.iloc[:, :-1]
+    X = X.select_dtypes(include=["number"])
+
+    input_values = [inputs[col] for col in X.columns]
+
+    prediction = trained_model.predict([input_values])
+
+    return {
+        "prediction": float(prediction[0])
+    }

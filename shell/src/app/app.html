@@ -16,17 +16,8 @@
 
   <div class="main">
     <aside class="sidebar" [class.open]="isOpen">
-      <a routerLink='/data' routerLinkActive="active" (click)="closeSidebar()" data-icon="◫"
+      <a routerLink="/data" routerLinkActive="active" (click)="closeSidebar()" data-icon="◫"
         >Data</a
-      >
-
-      <a
-        [routerLink]="datasetExists ? ['/training'] : []"
-        routerLinkActive="active"
-        [class.disabled]="!datasetExists"
-        data-icon="⌬"
-        (click)="handleNav($event)"
-        >Training</a
       >
 
       <a
@@ -36,6 +27,15 @@
         data-icon="◎"
         (click)="handleNav($event)"
         >Visualization</a
+      >
+
+      <a
+        [routerLink]="datasetExists ? ['/training'] : []"
+        routerLinkActive="active"
+        [class.disabled]="!datasetExists"
+        data-icon="⌬"
+        (click)="handleNav($event)"
+        >Training</a
       >
 
       <a

@@ -46,3 +46,27 @@ def get_dataset_info():
         "allowed_algorithms": allowed_algorithms
     }
 
+def get_dataset_preview():
+    global current_dataset
+
+    if current_dataset is None:
+        return {"exists": False}
+    
+    preview = current_dataset.head(5).to_dict(orient="records")
+
+    numeric_df = current_dataset.select_dtypes(include=["number"])
+    numeric_summary = {}
+
+    for column in numeric_df.columns:
+        numeric_summary[column] = {
+            "mean": round(float(numeric_df[column].mean()), 4),
+            "min": round(float(numeric_df[column].min()), 4),
+            "max": round(float(numeric_df[column].max()), 4),
+            "std": round(float(numeric_df[column].std()), 4),
+        }
+
+    return {
+        "exists": True,
+        "preview": preview,
+        "numeric_summary": numeric_summary
+    }

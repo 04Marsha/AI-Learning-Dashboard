@@ -41,7 +41,7 @@ export class DataHomeComponent {
     });
   }
 
-  goToTraining() {
-    this.router.navigate(['/training']);
+  goToVisualization() {
+    this.router.navigate(['/visualization']);
   }
 }

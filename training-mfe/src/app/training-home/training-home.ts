@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -17,7 +18,10 @@ export class TrainingHomeComponent implements OnInit {
   training = false;
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.http.get('http://localhost:8000/dataset-info').subscribe({
@@ -59,5 +63,9 @@ export class TrainingHomeComponent implements OnInit {
           this.training = false;
         },
       });
+  }
+
+  goToPredition() {
+    this.router.navigate(['/prediction']);
   }
 }

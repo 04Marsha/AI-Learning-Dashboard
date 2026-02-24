@@ -71,18 +71,18 @@
   flex-shrink: 0;
 }
 
-.dataset-summary {
+.training-context {
   background: var(--surface);
   border: 1px solid var(--border);
   padding: 1.75rem;
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
+  position: relative;
   animation: fadeUp 0.3s ease both;
 }
 
-.dataset-summary::before {
+.training-context::before {
   content: '';
   position: absolute;
   top: 0;
@@ -92,36 +92,47 @@
   background: linear-gradient(90deg, var(--accent), var(--accent2));
 }
 
-.dataset-summary h3 {
+.training-context h3 {
   font-family: var(--font-disp);
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text);
-  margin-bottom: 0.25rem;
 }
 
-.dataset-summary p {
+.training-context p {
   font-family: var(--font-ui);
-  font-size: 1rem;
-  color: var(--muted);
+  font-size: 0.85rem;
+  color: var(--text);
   letter-spacing: 0.03em;
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
 }
 
-.dataset-summary p strong {
-  color: var(--text);
+.badge {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
   font-weight: 500;
-  min-width: 8rem;
-  flex-shrink: 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  background: rgba(53, 241, 200, 0.1);
+  border: 1px solid rgba(53, 241, 200, 0.3);
+  padding: 0.2rem 0.65rem;
+  white-space: nowrap;
 }
 
-.dataset-summary p span,
-.dataset-summary p > *:last-child {
-  color: var(--accent2);
+.info-text {
+  font-size: 0.9rem !important;
+  font-weight: 800;
+  letter-spacing: 0.05em !important;
+  color: var(--muted) !important;
+  opacity: 0.7;
+  font-style: italic;
+  gap: 0 !important;
 }
 
 .algorithm-section {
@@ -320,7 +331,6 @@
 
 .bar-fill {
   height: 100%;
-  border-radius: 0;
   transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
@@ -339,11 +349,9 @@
 .bar-fill.high {
   background: var(--accent);
 }
-
 .bar-fill.average {
   background: #f5c542;
 }
-
 .bar-fill.low {
   background: #f07070;
 }
@@ -359,23 +367,53 @@
   min-width: unset !important;
 }
 
+.cta-btn {
+  margin-top: 1rem;
+  align-self: flex-start;
+  background: var(--accent2);
+  color: var(--bg);
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--accent2);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    transform 0.1s;
+}
+
+.cta-btn:hover {
+  background: #4dffd9;
+  transform: translateY(-1px);
+}
+
+.cta-btn:active {
+  transform: translateY(0);
+}
+
 @media (min-width: 1400px) {
   .training-container {
     gap: 2.5rem;
   }
 
-  .dataset-summary,
+  .training-context,
   .algorithm-section {
     padding: 2.25rem;
   }
 
-  .dataset-summary h3,
-  .algorithm-section h3 {
-    font-size: 1.5rem;
+  .training-context h3,
+  .algorithm-section h3,
+  .result-card h3 {
+    font-size: 1.15rem;
   }
 
-  .dataset-summary p {
-    font-size: 1rem;
+  .training-context p,
+  .result-card p {
+    font-size: 0.95rem;
   }
 
   .algo-grid {
@@ -387,28 +425,16 @@
     font-size: 0.8rem;
     padding: 1.1rem 1rem;
   }
-
   .train-btn {
     font-size: 0.85rem;
     padding: 0.95rem 2.5rem;
   }
-
   .result-card {
     padding: 2rem;
   }
-
-  .result-card h3 {
-    font-size: 1.15rem;
-  }
-
-  .result-card p {
-    font-size: 0.95rem;
-  }
-
   .performance-bar {
     height: 8px;
   }
-
   .score-label {
     font-size: 2.2rem !important;
   }
@@ -418,10 +444,6 @@
   .algo-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   }
-
-  .dataset-summary p strong {
-    min-width: 7rem;
-  }
 }
 
 @media (max-width: 1023px) {
@@ -429,7 +451,7 @@
     gap: 1.75rem;
   }
 
-  .dataset-summary,
+  .training-context,
   .algorithm-section {
     padding: 1.5rem;
   }
@@ -443,11 +465,6 @@
     align-self: stretch;
     text-align: center;
   }
-
-  .result-card {
-    padding: 1.35rem;
-  }
-
   .result-card p strong {
     min-width: 6rem;
   }
@@ -458,23 +475,25 @@
     gap: 1.25rem;
   }
 
-  .dataset-summary,
+  .training-context,
   .algorithm-section {
     padding: 1.25rem;
   }
 
-  .dataset-summary h3,
+  .training-context h3,
   .algorithm-section h3 {
     font-size: 0.9rem;
   }
 
-  .dataset-summary p {
-    font-size: 0.82rem;
-    flex-wrap: wrap;
+  .training-context p {
+    font-size: 0.8rem;
   }
-
-  .dataset-summary p strong {
-    min-width: 100%;
+  .badge {
+    font-size: 0.62rem;
+    padding: 0.18rem 0.55rem;
+  }
+  .info-text {
+    font-size: 0.68rem !important;
   }
 
   .algo-grid {
@@ -495,36 +514,29 @@
     font-size: 0.75rem;
   }
 
-  .warning {
-    font-size: 0.72rem;
-    padding: 0.85rem 1rem;
-  }
-
   .result-card {
     padding: 1.1rem;
     gap: 0.7rem;
   }
-
-  .result-card h3 {
-    font-size: 0.9rem;
-  }
-
   .result-card p {
     font-size: 0.8rem;
     flex-wrap: wrap;
   }
-
   .result-card p strong {
     min-width: 100%;
   }
-
   .score-label {
     font-size: 1.5rem !important;
+  }
+
+  .warning {
+    font-size: 0.72rem;
+    padding: 0.85rem 1rem;
   }
 }
 
 @media (max-width: 479px) {
-  .dataset-summary,
+  .training-context,
   .algorithm-section {
     padding: 1rem;
     gap: 0.75rem;
@@ -533,13 +545,8 @@
   .algorithm-section {
     gap: 1rem;
   }
-
-  .dataset-summary p strong {
-    font-size: 0.78rem;
-  }
-
-  .dataset-summary p {
-    font-size: 0.78rem;
+  .training-context p {
+    font-size: 0.75rem;
   }
 
   .algo-grid {
@@ -559,26 +566,43 @@
     letter-spacing: 0.1em;
   }
 
+  .result-card {
+    padding: 0.9rem;
+    gap: 0.6rem;
+  }
+  .result-card p {
+    font-size: 0.75rem;
+  }
+  .performance-bar {
+    height: 5px;
+  }
+  .score-label {
+    font-size: 1.3rem !important;
+  }
+
   .warning {
     font-size: 0.68rem;
     letter-spacing: 0.05em;
     padding: 0.75rem 0.9rem;
   }
+}
 
+@media (prefers-reduced-motion: reduce) {
+  .training-container,
+  .training-context,
+  .algorithm-section,
   .result-card {
-    padding: 0.9rem;
-    gap: 0.6rem;
+    animation: none;
   }
 
-  .result-card p {
-    font-size: 0.75rem;
+  .training-container > p::before {
+    animation: none;
   }
 
-  .performance-bar {
-    height: 5px;
-  }
-
-  .score-label {
-    font-size: 1.3rem !important;
+  .algo-card,
+  .train-btn,
+  .train-btn::before,
+  .bar-fill {
+    transition: none;
   }
 }
